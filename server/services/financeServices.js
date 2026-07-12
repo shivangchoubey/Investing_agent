@@ -13,7 +13,7 @@ export async function getCompanyFinancials(companyName) {
     const symbol = search.quotes[0].symbol;
 
 const summary = await yahooFinance.quoteSummary(symbol, {
-  modules: ["price", "summaryProfile", "defaultKeyStatistics"],
+  modules: ["price", "summaryProfile", "defaultKeyStatistics", "summaryDetail"],
 });
     return {
   company: summary.price.longName,
@@ -23,7 +23,7 @@ const summary = await yahooFinance.quoteSummary(symbol, {
   currentPrice: summary.price.regularMarketPrice,
   marketCap: summary.price.marketCap,
   currency: summary.price.currency,
-  peRatio: summary.defaultKeyStatistics?.trailingPE
+  peRatio: summary.summaryDetail?.trailingPE || summary.defaultKeyStatistics?.trailingPE
 };
   } catch (err) {
     console.error(err);

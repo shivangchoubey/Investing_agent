@@ -24,6 +24,8 @@ export async function getInvestmentReport(req,res){
         res.json({
                     success:true,
                     report:result,
+                    financials,
+                    news,
                 });
     }   catch(error){
         console.error(error);
