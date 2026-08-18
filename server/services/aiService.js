@@ -4,9 +4,10 @@ let model;
 function getModel() {
     if (!model) {
         model = new ChatGroq({
-            model: 'llama-3.3-70b-versatile',
+            model: "openai/gpt-oss-120b",
             apiKey: process.env.GROQ_API_KEY,
         });
+        console.log("🔥 USING GROQ MODEL:", model.model);
     }
     return model;
 }
